@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: felickz/metrics@main
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: NOT_NEEDED
           
           # Options
+          user: felickz
           plugin_contributors: yes
           plugin_contributors_contributions: yes
