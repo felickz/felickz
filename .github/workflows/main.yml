@@ -13,3 +13,7 @@ jobs:
       - uses: felickz/metrics@main
         with:
           token: ${{ secrets.METRICS_TOKEN }}
+          
+          # Options
+          plugin_contributors: yes
+          plugin_contributors_contributions: yes
