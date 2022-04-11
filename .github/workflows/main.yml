@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: felickz/metrics@main
         with:
-          token: NOT_NEEDED
+          token: ${{ secrets.METRICS_TOKEN }}
           
           # Options
           user: felickz
