@@ -7,8 +7,8 @@ pie
   title My career infosec colorwheel
   "White Team" : 5
   "Yellow Team" : 35
-  "Green Team" : 20
-  "Blue Team" : 10
+  "Green Team" : 15
+  "Blue Team" : 15
   "Purple Team" : 20
   "Red Team" : 5
   "Orange Team" : 5
