@@ -9,8 +9,8 @@ pie
   "Yellow Team" : 20
   "Green Team" : 30
   "Blue Team" : 10
-  "Purple Team" : 10
-  "Red Team" : 20
+  "Purple Team" : 20
+  "Red Team" : 10
   "Orange Team" : 5
   
 ```
