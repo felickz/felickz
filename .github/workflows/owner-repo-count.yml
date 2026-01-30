@@ -9,10 +9,12 @@ on:
 jobs:
   update-badge:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
           fetch-depth: 0
 
       - uses: actions/setup-node@v6
@@ -57,4 +59,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add "github-repo-count-"*.svg
           git commit -m "🤖 Update Badges" || exit 0
-          git push
+          git push origin HEAD:main
