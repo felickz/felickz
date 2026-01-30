@@ -41,15 +41,17 @@ jobs:
             echo "=== Updating badge for ${owner} ==="
             OWNER="${owner}" node ./scripts/update-badge-script.js "${owner}"
           
-            echo "DEBUG: last update-badge written to GITHUB_ENV: $(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 || echo 'update-badge=NONE')"
+            last_line="$(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 || true)"
+            echo "DEBUG: last update-badge written to GITHUB_ENV: ${last_line:-update-badge=NONE}"
           
-            # Capture whether any iteration changed, without losing previous changes.
-            if [[ "$(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 | cut -d= -f2-)" == "true" ]]; then
+            last_value="${last_line#update-badge=}"
+            if [[ "$last_value" == "true" ]]; then
               any_changed=true
             fi
           done
           
           echo "update-badge=${any_changed}" >> "$GITHUB_ENV"
+          echo "DEBUG: final any_changed=${any_changed}"
 
       - name: Commit files (bot)
         if: env.update-badge == 'true'
@@ -58,10 +60,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add "github-repo-count-"*.svg
           git commit -m "🤖 Update Badges"
+          git push
 
-      - name: Push changes
-        if: env.update-badge == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
