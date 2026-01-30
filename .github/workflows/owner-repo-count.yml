@@ -35,6 +35,7 @@ jobs:
             advanced-security
             training-felickz
             dotnet-felickz
+            forks-felickz
           )
           any_changed=false
       
