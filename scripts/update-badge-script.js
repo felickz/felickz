@@ -1,5 +1,4 @@
 //see: https://github.com/TobseF/github-badge/blob/master/update-badge-script.js
-import fetch from 'node-fetch';
 import fs from 'fs';
 
 // Accept owner from environment variable or CLI arg instead of hardcoding.
