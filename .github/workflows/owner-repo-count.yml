@@ -35,26 +35,26 @@ jobs:
             dotnet-felickz
           )
 
-          any_changed=false
 
+          any_changed=false
+      
           for owner in "${owners[@]}"; do
             echo "=== Updating badge for ${owner} ==="
             OWNER="${owner}" node ./scripts/update-badge-script.js "${owner}"
-          
+      
+            # read what the script just appended to $GITHUB_ENV
             last_line="$(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 || true)"
-            echo "DEBUG: last update-badge written to GITHUB_ENV: ${last_line:-update-badge=NONE}"
-          
             last_value="${last_line#update-badge=}"
+      
             if [[ "$last_value" == "true" ]]; then
               any_changed=true
             fi
           done
-          
-          echo "update-badge=${any_changed}" >> "$GITHUB_ENV"
-          echo "DEBUG: final any_changed=${any_changed}"
+      
+          echo "any_changed=${any_changed}" >> "$GITHUB_ENV"
 
       - name: Commit files (bot)
-        if: env.update-badge == 'true'
+        if: env.any_changed == 'true'
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
