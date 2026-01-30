@@ -39,7 +39,7 @@ jobs:
 
           for owner in "${owners[@]}"; do
             echo "=== Updating badge for ${owner} ==="
-            OWNER="${owner}" node ./update-badge-script.js "${owner}"
+            OWNER="${owner}" node ./scripts/update-badge-script.js "${owner}"
 
             # The script writes update-badge=true/false into $GITHUB_ENV each run.
             # Capture whether any iteration changed, without losing previous changes.
