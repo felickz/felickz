@@ -40,17 +40,16 @@ jobs:
           for owner in "${owners[@]}"; do
             echo "=== Updating badge for ${owner} ==="
             OWNER="${owner}" node ./scripts/update-badge-script.js "${owner}"
-
-            echo "DEBUG: update-badge='${update-badge-<unset>}'"
-
-
+          
+            echo "DEBUG: update-badge='$(printenv update-badge || echo <unset>)'"
+          
             # The script writes update-badge=true/false into $GITHUB_ENV each run.
             # Capture whether any iteration changed, without losing previous changes.
-            if [[ "${update-badge:-false}" == "true" ]]; then
+            if [[ "$(printenv update-badge || echo false)" == "true" ]]; then
               any_changed=true
             fi
           done
-
+          
           echo "update-badge=${any_changed}" >> "$GITHUB_ENV"
 
       - name: Commit files (bot)
