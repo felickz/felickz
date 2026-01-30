@@ -41,11 +41,10 @@ jobs:
             echo "=== Updating badge for ${owner} ==="
             OWNER="${owner}" node ./scripts/update-badge-script.js "${owner}"
           
-            echo "DEBUG: update-badge='$(printenv update-badge 2>/dev/null || echo "UNSET")'"
+            echo "DEBUG: last update-badge written to GITHUB_ENV: $(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 || echo 'update-badge=NONE')"
           
-            # The script writes update-badge=true/false into $GITHUB_ENV each run.
             # Capture whether any iteration changed, without losing previous changes.
-            if [[ "$(printenv update-badge 2>/dev/null || echo "false")" == "true" ]]; then
+            if [[ "$(grep -E '^update-badge=' "$GITHUB_ENV" | tail -n 1 | cut -d= -f2-)" == "true" ]]; then
               any_changed=true
             fi
           done
