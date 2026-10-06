@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
-# Renders the first mermaid block of README-colorwheel.md to colorwheel.svg
+# Renders every mermaid block in README-colorwheel.md to an SVG.
+# The output name comes from the preceding "<!-- svg: name -->" comment.
 set -euo pipefail
 src="README-colorwheel.md"
-out="colorwheel.svg"
 tmp="$(mktemp -d)"
 
-awk '/^```mermaid/{f=1;next} /^```/{f=0} f' "$src" > "$tmp/colorwheel.mmd"
-[ -s "$tmp/colorwheel.mmd" ] || { echo "no mermaid block found in $src" >&2; exit 1; }
+awk -v dir="$tmp" '
+  /^<!-- svg: [A-Za-z0-9_-]+ -->/ { name=$3; next }
+  /^```mermaid/ { if (name != "") { f=1; out=dir "/" name ".mmd" }; next }
+  /^```/ { f=0; name=""; next }
+  f { print > out }
+' "$src"
+
+shopt -s nullglob
+files=("$tmp"/*.mmd)
+[ ${#files[@]} -gt 0 ] || { echo "no mermaid blocks found in $src" >&2; exit 1; }
 
 echo '{"args":["--no-sandbox"]}' > "$tmp/puppeteer.json"
-npx --yes @mermaid-js/mermaid-cli@11 -p "$tmp/puppeteer.json" -b transparent -i "$tmp/colorwheel.mmd" -o "$out"
+for f in "${files[@]}"; do
+  name="$(basename "$f" .mmd)"
+  npx --yes @mermaid-js/mermaid-cli@11 -p "$tmp/puppeteer.json" -b transparent -i "$f" -o "$name.svg"
+done
