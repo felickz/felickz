@@ -19,7 +19,10 @@ Field Security @ GitHub
 </td>
 <td valign="middle">
 
-<a href="https://github.com/felickz/felickz/blob/main/README-colorwheel.md"><img src="https://raw.githubusercontent.com/felickz/felickz/main/colorwheel.svg" alt="My career infosec colorwheel" width="320"></a>
+<a href="https://github.com/felickz/felickz/blob/main/README-colorwheel.md"><img src="https://raw.githubusercontent.com/felickz/felickz/main/colorwheel.svg" alt="My career infosec colorwheel" width="380"></a>
+
+[Introducing the InfoSec colour wheel — blending developers with red and blue security teams.](https://hackernoon.com/introducing-the-infosec-colour-wheel-blending-developers-with-red-and-blue-security-teams-6437c1a07700)
+
 
 </td>
 </tr>
