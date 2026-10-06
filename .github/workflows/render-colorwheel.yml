@@ -1,0 +1,35 @@
+name: Render colorwheel
+on:
+  push:
+    branches: [main]
+    paths:
+      - README-colorwheel.md
+      - scripts/render-colorwheel.sh
+      - .github/workflows/render-colorwheel.yml
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Render SVG from mermaid block
+        run: bash scripts/render-colorwheel.sh
+
+      - name: Commit SVG (bot)
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add colorwheel.svg
+          git diff --cached --quiet && exit 0
+          git commit -m "🤖 Update colorwheel.svg"
+          git push origin HEAD:main
