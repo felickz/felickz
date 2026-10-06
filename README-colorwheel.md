@@ -16,7 +16,7 @@ pie
   "Green (SecOps)" : 12
   "White (GRC)" : 10
   "Purple (Collab)" : 6
-  "Blue (SOC)" : 3
+  "Blue (DefSec)" : 3
   "Red (OffSec)" : 2
 ```
 
@@ -31,7 +31,7 @@ pie
   title Primary colors only
   "Yellow (Dev)" : 60
   "Red (OffSec)" : 27
-  "Blue (SOC)" : 13
+  "Blue (DefSec)" : 13
 ```
 
 ## Red vs Blue only
@@ -43,7 +43,7 @@ Builder work counts as defence, Orange and Purple split evenly. White excluded. 
 %%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#0000FF', 'pie2': '#ff0000', 'pieOpacity': '1', 'pieStrokeColor': '#808080', 'pieOuterStrokeColor': '#808080', 'pieTitleTextColor': '#808080', 'pieLegendTextColor': '#808080', 'pieSectionTextColor': '#808080'}}}%%
 pie
   title Red vs Blue only
-  "Blue (SOC)" : 73
+  "Blue (DefSec)" : 73
   "Red (OffSec)" : 27
 ```
 
