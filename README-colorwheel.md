@@ -2,7 +2,7 @@
 
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#FFFFFF', 'pie2': '#FFFF00', 'pie3': '#00FF00', 'pie4': '#0000FF', 'pie5': '#800080', 'pie6': '#ff0000', 'pie7': '#FFA500'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'pie1': '#FFFFFF', 'pie2': '#FFFF00', 'pie3': '#00FF00', 'pie4': '#0000FF', 'pie5': '#800080', 'pie6': '#ff0000', 'pie7': '#FFA500', 'pieOpacity': '1', 'pieStrokeColor': '#808080', 'pieOuterStrokeColor': '#808080', 'pieTitleTextColor': '#808080', 'pieLegendTextColor': '#808080', 'pieSectionTextColor': '#808080'}}}%%
 pie
   title My career infosec colorwheel
   "White Team" : 5
